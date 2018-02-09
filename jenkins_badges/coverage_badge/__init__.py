@@ -43,8 +43,9 @@ def send_error_badge():
 
 
 def generate_jenkins_api_url(job_name):
+    final_job_name = job_name.replace('__', '/')
     api_endpoint = ("job/{}/lastSuccessfulBuild/cobertura/api/json/?depth=2"
-           "").format(job_name)
+           "").format(final_job_name)
 
     return urljoin(current_app.config["JENKINS_BASE_URL"] + "/", api_endpoint)
 
